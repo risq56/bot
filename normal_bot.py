@@ -36,16 +36,24 @@ async def dm(ctx):
         d.append(i)
     print(d)
     usernamessd.close()
+    con_usernamessd = open("den_usernammes.txt","r")
+    con_g = usernamessd.readlines()
+    con_d = []
+    for i in con_g:
+        i = i.rstrip()
+        con_d.append(i)
+    print(con_d)
+    con_usernamessd.close()
 
     for member in ctx.guild.members:
         try:
             
-            if str(member.id) in d:
+            if str(member.id) in d or in con_d:
                 print(f"already dmed {member}")
                 pass
             if member.id == bot.user.id:
                 pass
-            elif str(member.id) not in d:
+            elif str(member.id) not in d or not in con_d:
                 usernames = open("con_usernammes.txt","a")
                 gogo = member.mention
                 message = f"Hello {gogo} we are so happy to announce you that our spoofer is finaly released\n\n**IT'S NOW OR NEVER !!!**\n\nIf you are interested you should go check the server <#861226650373062676> \n\nhttps://discord.gg/uPrayaUEe5"
@@ -59,7 +67,7 @@ async def dm(ctx):
             print(f"Couldn't send to {member}")
             usernames.writelines(str(member.id)+"\n")
 
-bot.run("OTk4NzAxMjQxNDA2MzQxMTUw.GNfRAf.o7i5AgijOnWVfWX9AB8F1QMJhtYvcwb6Wi6itE")
+bot.run("")
 
 
 
