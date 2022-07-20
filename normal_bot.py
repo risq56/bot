@@ -37,7 +37,7 @@ async def dm(ctx):
     print(d)
     usernamessd.close()
     con_usernamessd = open("den_usernammes.txt","r")
-    con_g = usernamessd.readlines()
+    con_g = con_usernamessd.readlines()
     con_d = []
     for i in con_g:
         i = i.rstrip()
@@ -48,12 +48,24 @@ async def dm(ctx):
     for member in ctx.guild.members:
         try:
             
-            if str(member.id) in d or in con_d:
+            if str(member.id) in d:
                 print(f"already dmed {member}")
                 pass
             if member.id == bot.user.id:
                 pass
-            elif str(member.id) not in d or not in con_d:
+            elif str(member.id) not in d:
+                usernames = open("con_usernammes.txt","a")
+                gogo = member.mention
+                message = f"Hello {gogo} we are so happy to announce you that our spoofer is finaly released\n\n**IT'S NOW OR NEVER !!!**\n\nIf you are interested you should go check the server <#861226650373062676> \n\nhttps://discord.gg/uPrayaUEe5"
+                await member.send(message)
+                print(f"Sent to {member}")
+                usernammes.writelines(str(member.id)+"\n")
+                # To not be rate limited
+                await asyncio.sleep(1)
+            elif str(member.id) in con_d:
+                print(f"already dmed {member}")
+                pass
+            elif str(member.id) not in con_d:
                 usernames = open("con_usernammes.txt","a")
                 gogo = member.mention
                 message = f"Hello {gogo} we are so happy to announce you that our spoofer is finaly released\n\n**IT'S NOW OR NEVER !!!**\n\nIf you are interested you should go check the server <#861226650373062676> \n\nhttps://discord.gg/uPrayaUEe5"
